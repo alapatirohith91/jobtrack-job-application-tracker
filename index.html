@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="JobTrack — a modern job application tracker." />
+  <title>JobTrack — Job Application Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">J</span><span>JobTrack</span></div>
+      <nav>
+        <button class="nav-item active" data-section="dashboard"><span>⌂</span> Dashboard</button>
+        <button class="nav-item" data-section="applications"><span>▣</span> Applications</button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="tip"><strong>Stay organized</strong><p>Keep every application, interview and follow-up in one place.</p></div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">CAREER COMMAND CENTER</p><h1 id="pageTitle">Dashboard</h1></div>
+        <div class="top-actions"><button class="icon-btn" id="exportBtn" title="Export data">↥</button><button class="avatar">R</button></div>
+      </header>
+
+      <section id="dashboard" class="section active-section">
+        <div class="hero"><div><p class="muted">Your job search at a glance</p><h2>Make every application count.</h2><p class="hero-copy">Track opportunities, stay on top of follow-ups, and turn your job search into a clear pipeline.</p></div><button class="primary" id="heroAdd">+ Add application</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon blue">▣</span><div><p>Total applications</p><strong id="totalStat">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon purple">◉</span><div><p>Interviews</p><strong id="interviewStat">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon green">✓</span><div><p>Offers</p><strong id="offerStat">0</strong></div></article>
+          <article class="stat-card"><span class="stat-icon orange">↗</span><div><p>Response rate</p><strong id="responseStat">0%</strong></div></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel pipeline"><div class="panel-head"><div><h3>Application pipeline</h3><p>Current status of your applications</p></div><button class="text-btn" data-section="applications">View all →</button></div><div id="pipelineRows"></div></article>
+          <article class="panel"><div class="panel-head"><div><h3>Upcoming follow-ups</h3><p>Stay proactive</p></div></div><div id="followUps"></div></article>
+        </div>
+        <article class="panel recent"><div class="panel-head"><div><h3>Recent applications</h3><p>Your latest opportunities</p></div><button class="text-btn" data-section="applications">Manage →</button></div><div id="recentTable"></div></article>
+      </section>
+
+      <section id="applications" class="section">
+        <div class="section-toolbar"><div><p class="muted">ALL OPPORTUNITIES</p><h2>Applications</h2></div><button class="primary" id="addBtn">+ Add application</button></div>
+        <div class="filters"><div class="search"><span>⌕</span><input id="searchInput" placeholder="Search company, role or location..." /></div><select id="statusFilter"><option value="all">All statuses</option><option>Applied</option><option>Interview</option><option>Offer</option><option>Rejected</option></select><select id="priorityFilter"><option value="all">All priorities</option><option>High</option><option>Medium</option><option>Low</option></select></div>
+        <article class="panel"><div id="applicationsTable"></div></article>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal hidden" id="modal"><div class="modal-card"><div class="modal-head"><div><p class="muted">OPPORTUNITY</p><h3 id="modalTitle">Add application</h3></div><button class="close" id="closeModal">×</button></div><form id="appForm"><input type="hidden" id="appId" /><div class="form-grid"><label>Company<input id="company" required placeholder="e.g. TCS" /></label><label>Role<input id="role" required placeholder="e.g. Java Developer" /></label><label>Location<input id="location" placeholder="Hyderabad / Remote" /></label><label>Salary<input id="salary" placeholder="₹4–6 LPA" /></label><label>Status<select id="status"><option>Applied</option><option>Interview</option><option>Offer</option><option>Rejected</option></select></label><label>Priority<select id="priority"><option>High</option><option selected>Medium</option><option>Low</option></select></label><label>Applied date<input id="date" type="date" required /></label><label>Follow-up date<input id="followUp" type="date" /></label></div><label>Notes<textarea id="notes" rows="3" placeholder="Interview details, recruiter contact, next steps..."></textarea></label><div class="modal-actions"><button type="button" class="secondary" id="cancelBtn">Cancel</button><button type="submit" class="primary">Save application</button></div></form></div></div>
+  <div class="toast" id="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
